@@ -2,13 +2,12 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 def log_to_gsheet(data, quotes, summary):
-    creds_path = "/etc/secrets/creds.json"  # Adjust this to your actual mount path
 
     scopes = [
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive"
     ]
-    creds = Credentials.from_service_account_file(creds_path, scopes=scopes)
+    creds = Credentials.from_service_account_file("/etc/secrets/creds.json", scopes=scopes)
     client = gspread.authorize(creds)
 
     sheet = client.open("QuoteLog").sheet1
